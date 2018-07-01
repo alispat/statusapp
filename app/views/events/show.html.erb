@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h2><%=@event.name%></h2>
+</div>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Cadastro</h3>
+      </div>
+      <table class='table'>
+                <tr>
+          <th class='text-right'>component_id</th>
+          <td><%= @event.component_id.name %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>situation_id</th>
+          <td><%= @event.situation_id.name %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Name</th>
+          <td><%= @event.name %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Message</th>
+          <td><%= @event.message %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Occourred at</th>
+          <td><%= @event.occourred_at %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Maintenance</th>
+          <td><%= @event.maintenance %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Notify</th>
+          <td><%= @event.notify %></td>
+        </tr>
+      </table>
+      <div class='panel-footer'>
+        <%= link_to edit_event_path(@event), class: 'btn btn-primary margin-right-sm' do %>
+          Editar
+        <% end %>
+        <%= link_to events_path, class: 'btn btn-default' do %>
+          Voltar
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

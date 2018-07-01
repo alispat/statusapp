@@ -1,0 +1,61 @@
+<div class="page-header">
+  <h2>Eventos <%= link_to new_event_path, class: 'btn btn-primary' do %>Novo<% end %></h2>
+</div>
+
+<% unless @events.empty? -%>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='panel panel-default'>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Componente</th>
+              <th>Situação</th>
+              <th>Evento</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.includes(:component).includes(:situation).order(occourred_at: :desc).each do |event| %>
+              <tr class='event' id='event_<%=event.id%>'>
+                <td><%= event.occourred_at.strftime("%d/%m/%Y %H:%M") %></td>
+                <td><%= event.component.name %></td>
+                <td style='color: <%=event.situation.color%>; vertical-align: middle'>
+                  <i class='<%=event.component.situation.icon%> margin-right-sm'></i><%= event.situation.name %>
+                </td>
+                <td><%= event.name %></td>
+                <td class='text-right'>
+                  <%= link_to 'Editar', edit_event_path(event), class: 'margin-left-sm' %>
+                  <%= link_to 'Remover', event, method: :delete, data: { confirm: 'Você confirma esta ação?' }, class: 'margin-left-sm' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class='panel-footer'>
+        <div class='row'>
+          <div class='col-md-6 text-left'>
+            <%= page_entries_info @events %>
+          </div>
+          <div class='col-md-6 text-right'>
+            <%= paginate @events %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% else -%>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+          <p class="lead text-center text-muted margin-top-xl margin-bottom-xl">Nenhum item encontrado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

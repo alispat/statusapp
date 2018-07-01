@@ -1,0 +1,29 @@
+pt-BR:
+  helpers:
+    label:
+      event:
+        name: "Nome do evento"
+        message: "Descrição"
+        situation_id: "Situação atual"
+        component_id: "Componente"
+        notify: "Notificar assinantes"
+        occourred_at: "Data"
+  activerecord:
+    models:
+      event: "Componente"
+    attributes:
+      event:
+        name: "Nome do evento"
+        message: "Descrição"
+        situation: "Situação atual"
+        component: "Componente"
+        notify: "Notificar assinantes"
+        occourred_at: "Data"
+    errors:
+      models:
+        event:
+          attributes:
+            component:
+              required: "é requerido"
+            situation:
+              required: "é requerida"

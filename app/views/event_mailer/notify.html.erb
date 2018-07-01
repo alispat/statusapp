@@ -1,0 +1,92 @@
+
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+  <div style="background-color: #fff; margin: 0; padding: 40px 0 0 0; -webkit-text-size-adjust: none !important; width: 100%;">
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+      <tbody>
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #ddd;">
+              <tbody>
+
+                <tr>
+                  <td align="center" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" width="600" style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif; font-weight: bold; line-height: 100%; vertical-align: middle; border-bottom: 1px solid #ddd">
+                      <tbody>
+                        <tr>
+                          <td align='center'>
+                            <h1 style="color: #444; display: block; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif; font-size: 22px; font-weight: 500; line-height: 130%; margin: 0; padding: 36px 0 0 0; text-align: center;"><%=@event_name%></h1>
+                            <h2 style="color: #666; display: block; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 130%; margin: 0; padding: 10px 0 36px 0; text-align: center;"><%=@component_name%></h2>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align="center" valign="top">
+
+                    <!-- Corpo -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body">
+                      <tbody>
+                        <tr>
+                          <td valign="top" style="background-color: #fff;">
+
+                            <!-- Conteudo -->
+                            <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td valign="top" style="padding: 48px 48px 0 48px;">
+                                    <div style="color: #737373; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 150%; text-align: left;">
+																			<h3 style="color: #444; display: block; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: 500; line-height: 130%; margin: 0; padding: 0 0 0 0; text-align: left;">Situação atual: <%=@situation_name%></h3>
+                                      <p><%=@event_message.html_safe%></p>
+                                      <p>
+                                        &nbsp;<br>
+                                      </p>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!-- Fim Conteudo -->
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- Fim Corpo -->
+
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" width="600">
+              <tbody>
+                <tr>
+                  <td align="center" valign="top">
+                    <table border="0" cellpadding="0" cellspacing="0" width="600" style="margin-top: 30px; margin-bottom: 60px; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif; font-weight: normal; font-size: 12px; line-height: 100%; vertical-align: middle">
+                      <tbody>
+                        <tr>
+                          <td align='center' style='color: #999'>
+                            Visitar <a href='<%=@site_url%>' style='text-decoration: underline; color: #888888'>página de status</a> ou <a href='<%=@subscriptions_url%>' style='text-decoration: underline; color: #888888'>gerenciar notificações</a> para esses e-mails.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

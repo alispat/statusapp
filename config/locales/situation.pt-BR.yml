@@ -1,0 +1,15 @@
+pt-BR:
+  helpers:
+    label:
+      situation:
+        name: "Nome da situação"
+        icon: "Ícone (fontawesome)"
+        color: "Cor (hexadecimal)"
+  activerecord:
+    models:
+      situation: "Situação do componente"
+    attributes:
+      situation:
+        name: "Nome da situação"
+        icon: "Ícone (fontawesome)"
+        color: "Cor (hexadecimal)"

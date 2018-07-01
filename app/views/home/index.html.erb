@@ -1,0 +1,94 @@
+<% if Component.everything_ok? %>
+	<div class="alert alert-success margin-top-md" role="alert" style='background-color: #71bf60; border-color: #65ab56; color: white; padding: 20px'>
+		<h3 class="panel-title">Todos os sistemas estão operacionais.</h3>
+	</div>
+<% else %>
+	<div class="alert alert-danger margin-top-md" role="alert" style='background-color: #ff8800; border-color: #d47100; color: white; padding: 20px'>
+		<h3 class="panel-title">Alguns sistemas estão com problemas.</h3>
+	</div>
+<% end %>
+
+<% Group.all.each do |group| %>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title"><%=group.name%></h3>
+	  </div>
+	  <table class='table'>
+	  	<tbody>
+	  		<% group.components.includes(:situation).each do |component| %>
+		  		<tr>
+		  			<td style='padding: 20px'>
+		  				<strong>
+			  				<% if component.url.blank? %>
+			  					<span><%= component.name %></span>
+			  				<% else %>
+			  					<%= link_to component.name, component.url %>
+			  				<% end %>
+		  				</strong>
+		  				<% unless component.description.blank? %>
+		  					<p><%=component.description%></p>
+		  				<% end %>
+		  			</td>
+		  			<td class='text-right' style='padding: 20px; color: <%=component.situation.color%>; vertical-align: middle'>
+		  				<i class='<%=component.situation.icon%> margin-right-sm'></i><%=component.situation.name%>
+		  			</td>
+		  		</tr>
+	  		<% end %>
+	  	</tbody>
+	  </table>
+	</div>
+<% end %>
+
+<div class="page-header margin-top-lg">
+  <h2>Diário de bordo</h2>
+</div>
+
+<% @end_day.downto(@start_day).each do |date| %>
+
+	<h4 class='margin-bottom-sm'><%=date.strftime("%d")%> de <%=I18n.t('date.month_names')[date.strftime("%m").to_i]%> de <%=date.strftime("%Y")%></h4>
+
+	<% any = false %>
+
+	<% Event.where(occourred_on: date).includes(:situation).includes(:component).order(occourred_at: :desc).each do |event| %>
+
+    <% any = true %>
+
+		<div class='row margin-bottom-sm'>
+			<div class='col-md-1 text-center'>
+				<i class='<%=event.situation.icon%> fa-3x' style='color: <%=event.situation.color%>'></i><br>
+				<span style='color: #ccc'><%=event.occourred_at.strftime("%H:%M")%></span>
+			</div>
+			<div class='col-md-11'>
+				<div class='panel panel-default'>
+					<div class='panel-body'>
+						<span class='label label-default margin-right-sm' style='font-size: 0.9em'><%=event.component.name%></span><strong><%=event.name%></strong>
+						<hr>
+						<p><%=event.message.gsub("\n", "<br>").html_safe%></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<% end %>
+
+	<% unless any %>
+
+		<div class='panel panel-default margin-bottom-lg'>
+			<div class='panel-body'>
+				Nenhum incidente reportado.
+			</div>
+		</div>
+
+	<% end %>
+
+<% end %>
+
+<div class='row margin-bottom-lg'>
+	<div class='col-md-6'>
+		<a href='<%=home_index_path%>?d=<%=(@start_day-7.days)%>' class='btn btn-default btn-md'><i class='fa fa-long-arrow-left margin-right-sm'></i>Semana anterior</a>
+	</div>
+	<div class='col-md-6 text-right'>
+		<a href='<%=home_index_path%>?d=<%=(@start_day+7.days)%>' class='btn btn-default btn-md'>Próxima semana<i class='fa fa-long-arrow-right margin-left-sm'></i></a>
+	</div>
+</div>
+

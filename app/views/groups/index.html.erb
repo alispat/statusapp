@@ -1,0 +1,55 @@
+<div class="page-header">
+  <h2>Grupos <% if policy(:group).new? %><%= link_to new_group_path, class: 'btn btn-primary' do %>Novo<% end %><% end %></h2>
+</div>
+
+<% unless @groups.empty? -%>
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='panel panel-default'>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= content_tag_for(:tr, @groups) do |group| %>
+              <td><%= group.name %></td>
+              <td class='text-right'>
+                <% if policy(:group).edit? %>
+                  <%= link_to 'Editar', edit_group_path(group), class: 'margin-left-sm' %>
+                <% end %>
+                <% if policy(:group).destroy? %>
+                  <%= link_to 'Remover', group, method: :delete, data: { confirm: 'Você confirma esta ação?' }, class: 'margin-left-sm' %>
+                <% end %>
+              </td>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class='panel-footer'>
+        <div class='row'>
+          <div class='col-md-6 text-left'>
+            <%= page_entries_info @groups %>
+          </div>
+          <div class='col-md-6 text-right'>
+            <%= paginate @groups %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% else -%>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class='panel panel-default'>
+        <div class='panel-body'>
+          <p class="lead text-center text-muted margin-top-xl margin-bottom-xl">Nenhum item encontrado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h2><%=@component.name%></h2>
+</div>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='panel panel-default'>
+      <div class="panel-heading">
+        <h3 class="panel-title">Cadastro</h3>
+      </div>
+      <table class='table'>
+                <tr>
+          <th class='text-right'>Name</th>
+          <td><%= @component.name %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Url</th>
+          <td><%= @component.url %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Description</th>
+          <td><%= @component.description %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>Grupo</th>
+          <td><%= @component.group.name %></td>
+        </tr>
+        <tr>
+          <th class='text-right'>situation_id</th>
+          <td><%= @component.situation.name %></td>
+        </tr>
+      </table>
+      <div class='panel-footer'>
+        <%= link_to edit_component_path(@component), class: 'btn btn-primary margin-right-sm' do %>
+          Editar
+        <% end %>
+        <%= link_to components_path, class: 'btn btn-default' do %>
+          Voltar
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

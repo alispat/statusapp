@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=@config.site %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <% javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js",
+                              "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
+  <![endif]-->
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container">
+
+  	<div class='row'>
+  		<div class='col-md-10'>
+
+        <% if @config.logo .attached? %>
+          <%= link_to image_tag(@config.logo , class: 'margin-bottom-sm'), root_path %>
+        <% else %>
+    			<h1 style='margin-top: 0'><%=link_to @config.site, root_path %></h1>
+      		<p class='lead'><%=@config.description%></p>
+        <% end %>
+
+    	</div>
+    	<div class='col-md-2 text-right'>
+
+        <% if devise_controller? %>
+
+          <%= link_to "<i class='fa fa-long-arrow-left'></i> Voltar".html_safe, root_path, class: 'btn btn-default'  %>
+
+        <% else %>
+
+      	  <% if user_signed_in? %>
+
+      			<div class="dropdown">
+      			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-logged-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      			    <%= current_user.email %>
+      			    <span class="caret"></span>
+      			  </button>
+      			  <ul class="dropdown-menu" aria-labelledby="dropdown-logged-user">
+
+                <% if policy(:event).index? %>
+                  <li class="dropdown-header">EVENTOS:</li>
+                <% end %>
+                <% if policy(:event).new? %>
+                  <li><%= link_to "Novo evento", new_event_path %></li>
+                <% end %>
+                <% if policy(:event).index? %>
+                  <li><%= link_to "Eventos", events_path %></li>
+                <% end %>
+                <% if policy(:template).index? %>
+                  <li><%= link_to "Templates", templates_path %></li>
+                <% end %>
+                <% if policy(:component).index? %>
+                  <li class='divider'></li>
+                  <li class="dropdown-header">COMPONENTES:</li>
+                  <li><%= link_to "Componentes", components_path %></li>
+                <% end %>
+                <% if policy(:group).index? %>
+                  <li><%= link_to "Grupos", groups_path %></li>
+                <% end %>
+                <% if policy(:situation).index? %>
+                  <li><%= link_to "Situações", situations_path %></li>
+                <% end %>
+                <% if current_user.admin? || current_user.staff? %>
+                  <li class='divider'></li>
+                  <li class="dropdown-header">PRINCIPAL:</li>
+                  <% if policy(:config).edit? %>
+                    <li><%= link_to "Configuração", edit_config_path %></li>
+                  <% end %>
+                  <li><%= link_to 'Editar usuário', edit_user_registration_path, class: '' %></li>
+                <% end %>
+                <li><%= link_to 'Notificações', edit_subscription_path(current_user.public_token), class: '' %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'Sair', destroy_user_session_path, method: :delete, class: '' %></li>
+      			  </ul>
+      			</div>
+
+    			<% else %>
+
+    			  <%= link_to "Inscrever-se", new_user_registration_path, class: 'btn btn-success'  %>
+
+    			<% end %>
+
+        <% end %>
+
+    	</div>
+    </div>
+
+    <%= breadcrumbs %>
+
+    <% flash.each do |name, msg| %>
+      <% unless flash_to_alert(name).blank? %>
+        <%= content_tag :div, class: "alert alert-#{flash_to_alert(name)} alert-dismissable margin-top-md margin-bottom-lg", role: "alert" do %>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+          <%= msg.html_safe %>.
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+
+    <p>&nbsp;</p>
+  </div>
+
+  <%= javascript_include_tag 'application' %>
+  <script src="https://use.fontawesome.com/23820824ae.js"></script>
+
+</body>
+</html>

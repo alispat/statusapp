@@ -1,0 +1,35 @@
+<%%= render 'shared/error_messages', object: @<%= singular_table_name %> %>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <%%= form_for(@<%= singular_table_name %>) do |f| %>
+      <div class='panel panel-default'>
+        <div class="panel-heading">
+          <h3 class="panel-title">Cadastro</h3>
+        </div>
+        <div class='panel-body'>
+
+          <% attributes.each do |attribute| -%>
+            <%- if attribute.reference? -%>
+            <div class="form-group">
+              <%%= f.label :<%= attribute.column_name %>%><br>
+              <%%= f.collection_select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, { prompt: true }, { class: 'form-control' }  %>
+            </div>
+            <%- else -%>
+            <div class="form-group">
+              <%%= f.label :<%= attribute.name %>%><br>
+              <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, class: "form-control", placeholder: "", maxlength: 255 %>
+            </div>
+            <%- end -%>
+          <% end -%>
+        </div>
+        <div class='panel-footer'>
+          <%%= f.submit 'Salvar', data: { disable_with: "Aguarde..." }, class: 'btn btn-primary margin-right-sm' %>
+          <%%= link_to <%= index_helper %>_path, class: 'btn btn-default' do %>
+            Voltar
+          <%% end %>
+        </div>
+      </div>
+    <%% end %>
+  </div>
+</div>

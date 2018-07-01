@@ -1,0 +1,13 @@
+pt-BR:
+  helpers:
+    label:
+      template:
+        name: "Nome"
+        message: "Descrição"
+  activerecord:
+    models:
+      template: "Template"
+    attributes:
+      template:
+        name: "Nome"
+        message: "Descrição"

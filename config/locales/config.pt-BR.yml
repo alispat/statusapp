@@ -1,0 +1,17 @@
+pt-BR:
+  helpers:
+    label:
+      config:
+        site: "Nome do site"
+        url: "URL"
+        description: "Sobre este site"
+        logo: "Logotipo"
+  activerecord:
+    models:
+      config: "Configuração"
+    attributes:
+      config:
+        site: "Nome do site"
+        url: "URL"
+        description: "Sobre este site"
+        logo: "Logotipo"

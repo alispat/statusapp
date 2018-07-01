@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  component: one
+  situation: one
+  name: MyString
+  message: MyText
+  occourred_at: 2018-06-23 18:00:11
+  maintenance: false
+  notify: false
+
+two:
+  component: two
+  situation: two
+  name: MyString
+  message: MyText
+  occourred_at: 2018-06-23 18:00:11
+  maintenance: false
+  notify: false

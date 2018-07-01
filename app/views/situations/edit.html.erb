@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h2><%=@situation.name%></h2>
+</div>
+
+<%= render 'shared/error_messages', object: @situation %>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <%= form_for(@situation) do |f| %>
+      <div class='panel panel-default'>
+        <div class="panel-heading">
+          <h3 class="panel-title">Cadastro</h3>
+        </div>
+        <div class='panel-body'>
+
+                      <div class="form-group">
+              <%= f.label :name%><br>
+              <%= f.text_field :name, class: "form-control", placeholder: "", maxlength: 255 %>
+            </div>
+                      <div class="form-group">
+              <%= f.label :icon%><br>
+              <%= f.text_field :icon, class: "form-control", placeholder: "", maxlength: 255 %>
+            </div>
+                      <div class="form-group">
+              <%= f.label :color%><br>
+              <%= f.text_field :color, class: "form-control", placeholder: "", maxlength: 255 %>
+            </div>
+                  </div>
+        <div class='panel-footer'>
+          <%= f.submit 'Salvar', data: { disable_with: "Aguarde..." }, class: 'btn btn-primary margin-right-sm' %>
+          <%= link_to situations_path, class: 'btn btn-default' do %>
+            Voltar
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

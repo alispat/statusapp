@@ -1,0 +1,27 @@
+pt-BR:
+  helpers:
+    label:
+      component:
+        name: "Nome do componente"
+        url: "URL"
+        description: "Descrição"
+        situation_id: "Situação atual"
+        group_id: "Grupo"
+  activerecord:
+    models:
+      component: "Componente"
+    attributes:
+      component:
+        name: "Nome do componente"
+        url: "URL"
+        description: "Descrição"
+        situation: "Situação atual"
+        group: "Grupo"
+    errors:
+      models:
+        component:
+          attributes:
+            group:
+              required: "é requerido"
+            situation:
+              required: "é requerida"

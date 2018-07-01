@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h2>Configuração</h2>
+</div>
+
+<%= render 'shared/error_messages', object: @config %>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <%= form_for(@config) do |f| %>
+      <div class='panel panel-default'>
+        <div class="panel-heading">
+          <h3 class="panel-title">Cadastro</h3>
+        </div>
+        <div class='panel-body'>
+          <div class="form-group">
+            <%= f.label :site%><br>
+            <%= f.text_field :site, class: "form-control", placeholder: "", maxlength: 255 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :url%><br>
+            <%= f.text_field :url, class: "form-control", placeholder: "", maxlength: 255 %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :logo %><br>
+            <% if @config.logo.attached? %>
+              <%= image_tag @config.logo, width: '200px', class: 'margin-bottom-sm' %><br>
+              <input name="config[remove_logo]" type="hidden" value="0">
+              <input type="checkbox" value="1" name="config[remove_logo]" id="config_remove_logo">
+              <label for="config_remove_logo" style='font-weight: normal'>Remover</label>
+            <% else %>
+              <%= f.file_field :logo, class: "form-control" %>
+              <p class='help-block'>Ao enviar um logotipo, ele será exibido no lugar do nome e descrição do site.</p>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :description%><br>
+            <%= f.text_area :description, class: 'form-control', cols: 20, rows: 3 %>
+          </div>
+        </div>
+        <div class='panel-footer'>
+          <%= f.submit 'Salvar', data: { disable_with: "Aguarde..." }, class: 'btn btn-primary margin-right-sm' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

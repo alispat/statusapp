@@ -1,0 +1,20 @@
+mysql:
+  user: 'status_dev'
+  password: '?'
+
+memcached:
+  server: 'localhost'
+  user:
+  password:
+
+redis:
+  server: 'redis://127.0.0.1:6379'
+  password:
+
+mailer:
+  from: 'foo@bar.com'
+  host: 'seu-host-de-smtp.com'
+  user: 'usernamexyz'
+  password: '?'
+
+secret_key_base: status_dev_???

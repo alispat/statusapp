@@ -1,0 +1,11 @@
+pt-BR:
+  helpers:
+    label:
+      group:
+        name: "Nome do grupo"
+  activerecord:
+    models:
+      group: "Grupos de componentes"
+    attributes:
+      group:
+        name: "Nome do grupo"

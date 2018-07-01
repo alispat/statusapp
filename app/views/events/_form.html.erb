@@ -1,0 +1,78 @@
+<%= render 'shared/error_messages', object: @event %>
+
+<div class='row'>
+  <div class='col-md-10'>
+    <%= form_for(@event) do |f| %>
+      <div class='panel panel-default'>
+        <div class="panel-heading">
+          <h3 class="panel-title">Cadastro</h3>
+        </div>
+        <div class='panel-body'>
+
+          <% if @templates.any? %>
+            <div class="form-group">
+              <label for="template_id">Template</label><br>
+              <select class="form-control" id="template_id" onchange="$('#event_name').val($(this).find(':selected').data('name'));$('#event_message').val($(this).find(':selected').data('message'));">
+                <option value="">Por favor selecione</option>
+                <% @templates.each do |template| %>
+                  <option data-name='<%=template.name%>' data-message='<%=template.message%>' value="<%=template.id%>"><%=template.name%></option>
+                <% end %>
+              </select>
+            </div>
+          <% end %>
+
+          <% if @event.id.blank? %>
+            <div class="form-group">
+              <%= f.label :component_id%><br>
+              <%= f.collection_select :component_id, Component.all, :id, :name, { prompt: true }, { class: 'form-control' }  %>
+            </div>
+          <% else %>
+            <div class="form-group">
+              <%= f.label :component_id%><br>
+              <input type='text' disabled value='<%=@event.component.name%>' class='form-control'/>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :situation_id%><br>
+            <%= f.collection_select :situation_id, Situation.all, :id, :name, { prompt: true }, { class: 'form-control' }  %>
+          </div>
+          <div class="form-group">
+            <%= f.label :name%><br>
+            <%= f.text_field :name, class: "form-control", placeholder: "", maxlength: 255 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :message%><br>
+            <%= f.text_area :message, class: 'form-control', cols: 20, rows: 10 %>
+          </div>
+          <div class="form-group">
+            <%= f.label :occourred_at%><br>
+            <%= f.datetime_select :occourred_at,
+                  {
+                    order: [:day, :month, :year, :hour, :minute],
+                    prompt: { day: 'Dia', month: 'Mês', year: 'Ano', hour: 'Hora', minute: 'Minuto' },
+                    use_short_month: true
+                  },
+                  {
+                    required: true,
+                    disabled: false,
+                    class: 'form-control input-md',
+                    style: 'width: 17%; display: inline-block'
+                    }
+            %>
+          </div>
+          <div class="form-group">
+            <%= f.label :notify%><br>
+            <label class="radio-inline"><%= f.radio_button(:notify, true) %>Sim</label>
+            <label class="radio-inline"><%= f.radio_button(:notify, false) %>Não</label>
+          </div>
+        </div>
+        <div class='panel-footer'>
+          <%= f.submit 'Salvar', data: { disable_with: "Aguarde..." }, class: 'btn btn-primary margin-right-sm' %>
+          <%= link_to events_path, class: 'btn btn-default' do %>
+            Voltar
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

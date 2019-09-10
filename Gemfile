@@ -21,10 +21,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
 # Authentication
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 gem 'devise-bootstrap-views'
-gem 'devise-async'
-gem 'simple_token_authentication', '~> 1.0'
+gem 'devise-async', '>= 1.0.0'
+gem 'simple_token_authentication', '~> 1.15', '>= 1.15.1'
 
 gem 'bootstrap-generators', '~> 3.3.4'
 

@@ -28,7 +28,7 @@ gem 'simple_token_authentication', '~> 1.0'
 
 gem 'bootstrap-generators', '~> 3.3.4'
 
-gem 'rack-cors', require: 'rack/cors'
+gem 'rack-cors', '1.0.5'
 gem 'rack-attack'
 
 # Authorization

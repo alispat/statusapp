@@ -57,7 +57,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 # Paging records
-gem 'kaminari'
+gem 'kaminari', '>= 1.2.1'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
